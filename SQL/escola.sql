@@ -56,7 +56,23 @@ INSERT INTO pessoa VALUES (NULL, 'Alex', 'Souza', '229.559.999-25', '2006-05-29'
 INSERT INTO pessoa VALUES (NULL, 'Elton', 'Feliciano de Paula', '649.254.626-92', '1972-05-06', 2800, 'Zelador(a)');
 INSERT INTO pessoa VALUES (NULL, 'Marcos', 'Oliveira de Souza', '123.456.789-10', '1985-10-23', 4500, 'Diretor(a)');
 INSERT INTO pessoa VALUES (NULL, 'Joana', 'da Silva', '195.626.256-10', '1995-09-15', 4500, 'Diretor(a)');
+INSERT INTO pessoa VALUES (NULL, 'Maria Joana', 'Oliveira de Souza', '157.682.654-92', '1974-02-12', 1800, 'Cozinheiro(a)');
+INSERT INTO pessoa VALUES (NULL, 'Maria', 'da Silva', '168.122.456-57', '1978-08-22', 1800, 'Cozinheiro(a)');
+INSERT INTO pessoa VALUES (NULL, 'Analina', 'Souza', '758.444.521-74', '1979-01-17', 1800, 'Cozinheiro(a)');
+INSERT INTO pessoa VALUES (NULL, 'Firmino', 'de Paula', '123.423.543-45', '1992-06-15', 2200, 'Bibliotecário(a)');
 
 
 SELECT * FROM pessoa;
 SELECT * FROM cargo;
+
+
+
+
+-- FILTRANDO 
+SELECT p.nome_pessoa AS Nome, 
+p.sobrenome_pessoa AS Sobrenome,
+c.titulo_cargo AS Cargo
+FROM pessoa p
+INNER JOIN cargo c
+on p.titulo_cargo = c.titulo_cargo
+WHERE p.titulo_cargo = 'Aluno(a)';
