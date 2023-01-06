@@ -68,11 +68,12 @@ SELECT * FROM cargo;
 
 
 
--- FILTRANDO 
+-- FILTRANDO PESQUISA - APENAS ALUNOS, ORGANIZADOS POR ORDEM CRESCENTE.
 SELECT p.nome_pessoa AS Nome, 
 p.sobrenome_pessoa AS Sobrenome,
 c.titulo_cargo AS Cargo
 FROM pessoa p
 INNER JOIN cargo c
 on p.titulo_cargo = c.titulo_cargo
-WHERE p.titulo_cargo = 'Aluno(a)';
+WHERE p.titulo_cargo = 'Aluno(a)'
+ORDER BY p.nome_pessoa ASC;
