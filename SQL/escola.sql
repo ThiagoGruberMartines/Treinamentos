@@ -28,9 +28,6 @@ REFERENCES cargo (titulo_cargo);
 ALTER TABLE cargo
 DROP data_cadastro;
 
-ALTER TABLE pessoa
-DROP COLUMN data_cadastro;
-
 
 
 INSERT INTO cargo VALUES ('Professor(a)');
