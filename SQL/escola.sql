@@ -60,11 +60,14 @@ INSERT INTO pessoa VALUES (NULL, 'Maria Joana', 'Oliveira de Souza', '157.682.65
 INSERT INTO pessoa VALUES (NULL, 'Maria', 'da Silva', '168.122.456-57', '1978-08-22', 1800, 'Cozinheiro(a)');
 INSERT INTO pessoa VALUES (NULL, 'Analina', 'Souza', '758.444.521-74', '1979-01-17', 1800, 'Cozinheiro(a)');
 INSERT INTO pessoa VALUES (NULL, 'Firmino', 'de Paula', '123.423.543-45', '1992-06-15', 2200, 'Bibliotecário(a)');
+INSERT INTO pessoa VALUES (NULL, 'Luciano', 'Oliveira', '195.576.857-92', '1995-03-02', 4000, 'Técnico(a)');
+INSERT INTO pessoa VALUES (NULL, 'Marcia', 'da Silva', '168.546.654-85', '1972-12-10', 3250, 'Pedagogo(a)');
+INSERT INTO pessoa VALUES (NULL, 'Lucia', 'Pereira', '642.578.974-42', '1978-10-28', 3250, 'Pedagogo(a)');
+
 
 
 SELECT * FROM pessoa;
 SELECT * FROM cargo;
-
 
 
 
@@ -77,3 +80,6 @@ INNER JOIN cargo c
 on p.titulo_cargo = c.titulo_cargo
 WHERE p.titulo_cargo = 'Aluno(a)'
 ORDER BY p.nome_pessoa ASC;
+
+
+
