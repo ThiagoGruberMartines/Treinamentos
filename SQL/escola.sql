@@ -165,4 +165,20 @@ SELECT * FROM pessoa;
     
     
     
--- Exercício 8: 
+-- Exercício 8: Liste o salário médio pago pela escola:
+
+	SELECT AVG(salario) AS 'Média Salarial'
+    FROM pessoa;
+    
+    
+-- Exercício 9: Liste o menor salário pago pela
+-- escola em cada cargo:
+
+	SELECT titulo_cargo AS Cargo,
+    MIN(salario)
+    FROM pessoa
+    GROUP BY titulo_cargo
+    ORDER BY titulo_cargo;
+    
+    
+-- Exercício 10: 
