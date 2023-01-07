@@ -177,8 +177,52 @@ SELECT * FROM pessoa;
 	SELECT titulo_cargo AS Cargo,
     MIN(salario)
     FROM pessoa
+    WHERE titulo_cargo <> 'Aluno(a)'
     GROUP BY titulo_cargo
     ORDER BY titulo_cargo;
     
+-- FAZENDO A MESMA COISA SÓ QUE UTILIZANDO O JOIN (INNER JOIN)
     
--- Exercício 10: 
+    SELECT c.titulo_cargo AS Cargo,
+    MIN(p.salario)
+    FROM pessoa p
+    JOIN cargo c
+    ON p.titulo_cargo = c.titulo_cargo
+    WHERE c.titulo_cargo <> 'Aluno(a)'
+    GROUP BY c.titulo_cargo
+    ORDER BY c.titulo_cargo;
+    
+-- Exercício 10: Liste o nome do cargo e do
+-- funcionário ordenados por cargo e funcionário:
+
+SELECT c.titulo_cargo AS Cargo,
+p.nome_pessoa AS Funcionário
+FROM pessoa p
+JOIN cargo c
+ON p.titulo_cargo = c.titulo_cargo
+WHERE c.titulo_cargo <> 'Aluno(a)'
+ORDER BY c.titulo_cargo, p.nome_pessoa;
+
+
+
+
+
+-- TREINANDO FUNCTIONS
+
+DELIMITER $$
+CREATE FUNCTION fn_darAumento(salario DECIMAL(10,2), taxa DECIMAL(10,2))
+RETURNS DECIMAL(10,2) 
+BEGIN
+	 RETURN salario * taxa / 100;
+END$$
+DELIMITER ;
+
+
+-- Visualizando apenas como seria um aumento de 10% no salário de cada funcionário.
+
+SELECT nome_pessoa AS Nome,
+salario AS Salário,
+fn_darAumento(salario, 10)
+FROM pessoa
+WHERE titulo_cargo <> 'Aluno(a)'
+ORDER BY nome_pessoa ;
