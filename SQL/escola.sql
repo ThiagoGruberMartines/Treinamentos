@@ -82,4 +82,87 @@ WHERE p.titulo_cargo = 'Aluno(a)'
 ORDER BY p.nome_pessoa ASC;
 
 
+ALTER TABLE pessoa
+ADD COLUMN data_cadastro datetime;
 
+
+
+-- AQUI CRIAMOS UMA TRIGGER QUE TERÁ A FUNÇÃO DE CADASTRAR A DATA CORRETA EM QUE O CADASTRO FOI INSERIDO NO BANCO
+
+
+
+CREATE TRIGGER tr_cadastro BEFORE INSERT
+ON pessoa
+FOR EACH ROW
+SET NEW.data_cadastro = NOW();
+
+
+-- A PARTIR DAQUI, QUALQUER CADASTRO QUE SEJA INSERIDO NA TABELA 'pessoa', SERÁ AUTOMÁTICAMENTE INFORMADO A DATA E A HORA EM QUE FOI CADASTRADO.
+
+INSERT INTO pessoa (nome_pessoa, sobrenome_pessoa, cpf, data_nascimento, titulo_cargo) VALUES ('Willian', 'Toneli', '197.254.958-96', '1998-02-05', 'Aluno(a)');
+
+SELECT * FROM pessoa;
+
+
+
+
+
+
+-- Exercício 1: Listar nome e sobrenome ordenado
+-- por sobrenome:
+
+	SELECT nome_pessoa AS Nome,
+    sobrenome_pessoa AS Sobrenome
+    FROM pessoa
+    ORDER BY sobrenome_pessoa;
+    
+    
+-- Exercício 2: Liste os funcionários que têm salário
+-- superior a R$ 1.000,00 ordenados
+-- pelo nome completo:
+
+	SELECT * FROM pessoa
+    WHERE salario > 1000
+    ORDER BY nome_pessoa, sobrenome_pessoa;
+    
+    
+-- Exercício 3: Liste a data de nascimento e o
+-- primeiro nome das pessoas
+-- ordenados do mais novo para o mais velho:
+
+	SELECT nome_pessoa AS Nome,
+	data_nascimento AS 'Data de Nascimento'
+	FROM pessoa
+	ORDER BY data_nascimento DESC;
+
+
+-- Exercício 4: Liste o total da folha de pagamento:
+
+	SELECT SUM(salario)
+    AS TOTAL
+    FROM pessoa;
+    
+-- Exercício 5: Liste o total da folha de pagamento por cargo:
+
+	SELECT titulo_cargo AS Cargo,
+    SUM(salario) AS TOTAL
+    FROM pessoa
+    GROUP BY titulo_cargo
+    ORDER BY titulo_cargo ASC;
+    
+    
+-- Exercício 6: Liste a quantidade de funcionários dessa escola:
+
+	SELECT COUNT(titulo_cargo) AS Funcionários
+    FROM pessoa
+    WHERE titulo_cargo <> 'Aluno(a)';
+    
+-- Exercício 7: Liste a quantidade de alunos dessa escola:
+
+	SELECT COUNT(titulo_cargo) AS Alunos
+    FROM pessoa
+    WHERE titulo_cargo = 'Aluno(a)';
+    
+    
+    
+-- Exercício 8: 
