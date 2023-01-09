@@ -115,7 +115,8 @@ INSERT INTO professor_disciplina (disc_codigo, prof_numero, ano) VALUES (11, 5, 
 SELECT d.disc_nome AS Matéria,
 p.prof_nome AS Professor,
 p.prof_cidade AS 'Cidade do Professor',
-d.curso_nome AS Curso
+d.curso_nome AS Curso,
+pd.ano AS Ano
 FROM disciplina d
 JOIN professor_disciplina pd
 ON d.disc_codigo = pd.disc_codigo
@@ -126,7 +127,16 @@ ORDER BY d.disc_nome ASC;
 
 -- 2° Crie uma consulta que mostre todos os nomes dos professores do curso de CST Sistemas para Internet, 
 -- no ano de 2018, e os nomes das disciplinas pelas quais são responsáveis.
-
+SELECT p.prof_nome AS Professor,
+d.curso_nome AS Curso,
+d.disc_nome AS Matéria,
+pd.ano AS Ano
+FROM professor p
+JOIN professor_disciplina pd
+ON p.prof_numero = pd.prof_numero
+JOIN disciplina d
+ON d.disc_codigo = pd.disc_codigo
+WHERE d.curso_nome = 'CST Sistemas para Internet';
 
 -- 3° Crie uma consulta com todos os nomes de alunos matriculados no ano de 2018,
 -- os nomes das disciplinas em que estão matriculados, a cidade onde moram e os nomes dos cursos das disciplinas.
