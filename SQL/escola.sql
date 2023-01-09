@@ -213,16 +213,52 @@ DELIMITER $$
 CREATE FUNCTION fn_darAumento(salario DECIMAL(10,2), taxa DECIMAL(10,2))
 RETURNS DECIMAL(10,2) 
 BEGIN
-	 RETURN salario * taxa / 100;
+	 RETURN salario + salario * taxa / 100;
 END$$
 DELIMITER ;
+
 
 
 -- Visualizando apenas como seria um aumento de 10% no salário de cada funcionário.
 
 SELECT nome_pessoa AS Nome,
 salario AS Salário,
-fn_darAumento(salario, 10)
+fn_darAumento(salario, 10) AS 'Salário com aumento de 10%'
 FROM pessoa
 WHERE titulo_cargo <> 'Aluno(a)'
-ORDER BY nome_pessoa ;
+ORDER BY nome_pessoa;
+
+-- Aqui utilizamos a função fn_darAumento para realmente dar esse aumento, atualizando assim o valor real.
+
+UPDATE pessoa
+SET salario = fn_darAumento(salario, 10)
+WHERE id_pessoa = 30;
+
+
+
+
+
+-- Criando uma função que diminua o salário
+
+DELIMITER $$
+CREATE FUNCTION fn_diminuiSalario(salario DECIMAL(10,2), taxa DECIMAL(10,2))
+RETURNS DECIMAL(10,2)
+BEGIN
+	RETURN salario - salario * taxa / 100;
+END$$
+DELIMITER ;
+
+
+SELECT * FROM pessoa
+WHERE id_pessoa = 30;
+
+
+UPDATE pessoa
+SET salario = fn_diminuiSalario(salario, 10)
+WHERE id_pessoa = 30;
+
+
+
+
+
+
