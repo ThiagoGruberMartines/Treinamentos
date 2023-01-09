@@ -260,5 +260,3 @@ WHERE id_pessoa = 30;
 
 
 
-
-
