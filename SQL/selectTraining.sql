@@ -112,6 +112,17 @@ INSERT INTO professor_disciplina (disc_codigo, prof_numero, ano) VALUES (11, 5, 
 -- 1° Crie uma consulta com todas as disciplinas oferecidas no ano de 2018, constando os nomes das disciplinas, 
 -- nomes e cidades dos professores responsáveis e nomes dos cursos das disciplinas.
 
+SELECT d.disc_nome AS Matéria,
+p.prof_nome AS Professor,
+p.prof_cidade AS 'Cidade do Professor',
+d.curso_nome AS Curso
+FROM disciplina d
+JOIN professor_disciplina pd
+ON d.disc_codigo = pd.disc_codigo
+JOIN professor p
+ON p.prof_numero = pd.prof_numero
+WHERE pd.ano = 2018
+ORDER BY d.disc_nome ASC;
 
 -- 2° Crie uma consulta que mostre todos os nomes dos professores do curso de CST Sistemas para Internet, 
 -- no ano de 2018, e os nomes das disciplinas pelas quais são responsáveis.
